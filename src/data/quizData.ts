@@ -92,6 +92,61 @@ export const quizQuestionsPart2: QuizQuestion[] = [
       "Estou tentando entender por que isso aconteceu.",
     ],
   },
+  {
+    id: 8,
+    question: "O que normalmente te inspira?",
+    options: [
+      "Coisas lindas",
+      "Histórias de outras pessoas",
+      "Aprenda algo novo",
+      "Ver progresso",
+      "Atos de coragem",
+    ],
+  },
+  {
+    id: 9,
+    question: "Quando você se importa com alguém, qual é a primeira coisa que você faz?",
+    options: [
+      "Ouvir",
+      "Preciso de ajuda com algo prático.",
+      "Diga algo encorajador",
+      "Tente entender o problema deles.",
+      "Para acalmar a situação.",
+    ],
+  },
+  {
+    id: 10,
+    question: "Como você descreve seu modo de pensar?",
+    options: [
+      "Lógico",
+      "Intuitivo",
+      "Emocional",
+      "Visão global",
+      "Prático",
+    ],
+  },
+  {
+    id: 11,
+    question: "O que te ajuda a manter o foco durante o dia?",
+    options: [
+      "Um plano claro a seguir.",
+      "Um claro senso de propósito",
+      "Uma mentalidade serena",
+      "Me sentindo inspirado",
+      "Boa gestão do tempo",
+    ],
+  },
+  {
+    id: 12,
+    question: "Como você enfrenta um novo desafio?",
+    options: [
+      "Vou experimentar agora mesmo.",
+      "Vou pensar nisso com cuidado.",
+      "Sigo meu primeiro instinto.",
+      "Vou dividir em etapas.",
+      "Estou pedindo conselhos.",
+    ],
+  },
 ];
 
 export const allQuizQuestions: QuizQuestion[] = [...quizQuestionsPart1, ...quizQuestionsPart2];
