@@ -4,14 +4,15 @@ import GenderStep from "@/components/quiz/GenderStep";
 import AgeStep from "@/components/quiz/AgeStep";
 import ReadyStep from "@/components/quiz/ReadyStep";
 import QuestionStep from "@/components/quiz/QuestionStep";
+import MidwayStep from "@/components/quiz/MidwayStep";
 import EmailStep from "@/components/quiz/EmailStep";
 import LoadingStep from "@/components/quiz/LoadingStep";
 import ResultStep from "@/components/quiz/ResultStep";
-import { quizQuestions, archetypes, type ArchetypeResult } from "@/data/quizData";
+import { quizQuestionsPart1, quizQuestionsPart2, allQuizQuestions, archetypes, type ArchetypeResult } from "@/data/quizData";
 
-type Step = "gender" | "age" | "ready" | "question" | "email" | "loading" | "result";
+type Step = "gender" | "age" | "ready" | "question-part1" | "midway" | "question-part2" | "email" | "loading" | "result";
 
-const TOTAL_STEPS = quizQuestions.length + 1; // questions + email
+const TOTAL_STEPS = allQuizQuestions.length + 1; // all questions + email
 
 const Index = () => {
   const [step, setStep] = useState<Step>("gender");
@@ -23,7 +24,7 @@ const Index = () => {
   const calculateResult = useCallback((allAnswers: string[]): ArchetypeResult => {
     const scores = { leader: 0, servant: 0, wise: 0, worshipper: 0 };
     allAnswers.forEach((answer, i) => {
-      const q = quizQuestions[i];
+      const q = allQuizQuestions[i];
       if (!q) return;
       const idx = q.options.indexOf(answer);
       if (idx === 0) scores.wise += 1;
@@ -47,14 +48,29 @@ const Index = () => {
   };
 
   const handleReady = () => {
-    setStep("question");
+    setStep("question-part1");
     setQuestionIndex(0);
   };
 
-  const handleAnswer = (answer: string) => {
+  const handleAnswerPart1 = (answer: string) => {
     const newAnswers = [...answers, answer];
     setAnswers(newAnswers);
-    if (questionIndex < quizQuestions.length - 1) {
+    if (questionIndex < quizQuestionsPart1.length - 1) {
+      setQuestionIndex(questionIndex + 1);
+    } else {
+      setStep("midway");
+    }
+  };
+
+  const handleMidway = () => {
+    setStep("question-part2");
+    setQuestionIndex(0);
+  };
+
+  const handleAnswerPart2 = (answer: string) => {
+    const newAnswers = [...answers, answer];
+    setAnswers(newAnswers);
+    if (questionIndex < quizQuestionsPart2.length - 1) {
       setQuestionIndex(questionIndex + 1);
     } else {
       setStep("email");
@@ -75,18 +91,36 @@ const Index = () => {
       setStep("gender");
     } else if (step === "ready") {
       setStep("age");
-    } else if (step === "question") {
+    } else if (step === "question-part1") {
       if (questionIndex > 0) {
         setQuestionIndex(questionIndex - 1);
         setAnswers(answers.slice(0, -1));
       } else {
         setStep("ready");
       }
+    } else if (step === "midway") {
+      setStep("question-part1");
+      setQuestionIndex(quizQuestionsPart1.length - 1);
+      setAnswers(answers.slice(0, -1));
+    } else if (step === "question-part2") {
+      if (questionIndex > 0) {
+        setQuestionIndex(questionIndex - 1);
+        setAnswers(answers.slice(0, -1));
+      } else {
+        setStep("midway");
+      }
     } else if (step === "email") {
-      setStep("question");
-      setQuestionIndex(quizQuestions.length - 1);
+      setStep("question-part2");
+      setQuestionIndex(quizQuestionsPart2.length - 1);
       setAnswers(answers.slice(0, -1));
     }
+  };
+
+  const getCurrentProgress = () => {
+    if (step === "question-part1") return questionIndex + 1;
+    if (step === "question-part2") return quizQuestionsPart1.length + questionIndex + 1;
+    if (step === "email") return allQuizQuestions.length + 1;
+    return 0;
   };
 
   return (
@@ -94,13 +128,24 @@ const Index = () => {
       {step === "gender" && <GenderStep key="gender" onSelect={handleGender} />}
       {step === "age" && <AgeStep key="age" gender={gender} onSelect={handleAge} onBack={handleBack} />}
       {step === "ready" && <ReadyStep key="ready" gender={gender} onContinue={handleReady} />}
-      {step === "question" && (
+      {step === "question-part1" && (
         <QuestionStep
-          key={`q-${questionIndex}`}
-          question={quizQuestions[questionIndex]}
-          questionIndex={questionIndex}
+          key={`q1-${questionIndex}`}
+          question={quizQuestionsPart1[questionIndex]}
+          questionIndex={getCurrentProgress()}
           totalSteps={TOTAL_STEPS}
-          onSelect={handleAnswer}
+          onSelect={handleAnswerPart1}
+          onBack={handleBack}
+        />
+      )}
+      {step === "midway" && <MidwayStep key="midway" onContinue={handleMidway} onBack={handleBack} />}
+      {step === "question-part2" && (
+        <QuestionStep
+          key={`q2-${questionIndex}`}
+          question={quizQuestionsPart2[questionIndex]}
+          questionIndex={getCurrentProgress()}
+          totalSteps={TOTAL_STEPS}
+          onSelect={handleAnswerPart2}
           onBack={handleBack}
         />
       )}

@@ -1,11 +1,14 @@
 export type QuizQuestion = {
   id: number;
   question: string;
+  subtitle?: string;
   options: string[];
+  multiSelect?: boolean;
 };
 
 // Questions are the same for male and female
-export const quizQuestions: QuizQuestion[] = [
+// Questions 1-3 are before midway, 4-7 are after midway
+export const quizQuestionsPart1: QuizQuestion[] = [
   {
     id: 1,
     question: "Escolha um versículo bíblico que fale ao seu coração.",
@@ -39,6 +42,59 @@ export const quizQuestions: QuizQuestion[] = [
     ],
   },
 ];
+
+export const quizQuestionsPart2: QuizQuestion[] = [
+  {
+    id: 4,
+    question: "Como você costuma se sentir em um dia normal?",
+    options: [
+      "Tranquilo",
+      "Focado",
+      "Sensato",
+      "Esperançoso",
+      "Energético",
+      "Sobrecarregado",
+    ],
+  },
+  {
+    id: 5,
+    question: "O que te ajuda a relaxar depois de um longo dia?",
+    options: [
+      "Um momento de calmaria a sós",
+      "Conecte-se com alguém",
+      "Um passeio ao ar livre",
+      "Ar fresco e movimento",
+      "Tarefas simples que me acalmam",
+      "Atividades criativas ou aconchegantes",
+    ],
+  },
+  {
+    id: 6,
+    question: "O que as pessoas costumam dizer que é o seu ponto forte?",
+    subtitle: "Selecione todas as opções aplicáveis.",
+    options: [
+      "Um espírito pacífico",
+      "Pensamento sábio e prático",
+      "Um coração bondoso e gentil.",
+      "Um presente para ideias",
+      "Outro",
+    ],
+    multiSelect: true,
+  },
+  {
+    id: 7,
+    question: "Qual é a primeira coisa que você faz quando algo inesperado acontece?",
+    options: [
+      "Eu reajo rapidamente",
+      "Eu paro para pensar",
+      "Tento manter a calma.",
+      "Observo como os outros se sentem.",
+      "Estou tentando entender por que isso aconteceu.",
+    ],
+  },
+];
+
+export const allQuizQuestions: QuizQuestion[] = [...quizQuestionsPart1, ...quizQuestionsPart2];
 
 export type ArchetypeResult = {
   name: string;
