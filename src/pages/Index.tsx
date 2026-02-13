@@ -2,15 +2,16 @@ import { useState, useCallback } from "react";
 import { AnimatePresence } from "framer-motion";
 import GenderStep from "@/components/quiz/GenderStep";
 import AgeStep from "@/components/quiz/AgeStep";
+import ReadyStep from "@/components/quiz/ReadyStep";
 import QuestionStep from "@/components/quiz/QuestionStep";
 import EmailStep from "@/components/quiz/EmailStep";
 import LoadingStep from "@/components/quiz/LoadingStep";
 import ResultStep from "@/components/quiz/ResultStep";
 import { quizQuestions, archetypes, type ArchetypeResult } from "@/data/quizData";
 
-type Step = "gender" | "age" | "question" | "email" | "loading" | "result";
+type Step = "gender" | "age" | "ready" | "question" | "email" | "loading" | "result";
 
-const TOTAL_STEPS = 2 + quizQuestions.length; // age + questions + email
+const TOTAL_STEPS = quizQuestions.length + 1; // questions + email
 
 const Index = () => {
   const [step, setStep] = useState<Step>("gender");
@@ -20,23 +21,19 @@ const Index = () => {
   const [result, setResult] = useState<ArchetypeResult | null>(null);
 
   const calculateResult = useCallback((allAnswers: string[]): ArchetypeResult => {
-    // Simple scoring based on answer patterns
     const scores = { leader: 0, servant: 0, wise: 0, worshipper: 0 };
-
     allAnswers.forEach((answer, i) => {
       const q = quizQuestions[i];
       if (!q) return;
       const idx = q.options.indexOf(answer);
-      if (idx === 0) scores.leader += 1;
-      else if (idx === 1) scores.wise += 1;
-      else if (idx === 2) scores.servant += 1;
+      if (idx === 0) scores.wise += 1;
+      else if (idx === 1) scores.servant += 1;
+      else if (idx === 2) scores.leader += 1;
       else scores.worshipper += 1;
     });
-
     const maxKey = (Object.keys(scores) as Array<keyof typeof scores>).reduce((a, b) =>
       scores[a] > scores[b] ? a : b
     );
-
     return archetypes[maxKey];
   }, []);
 
@@ -46,6 +43,10 @@ const Index = () => {
   };
 
   const handleAge = () => {
+    setStep("ready");
+  };
+
+  const handleReady = () => {
     setStep("question");
     setQuestionIndex(0);
   };
@@ -53,7 +54,6 @@ const Index = () => {
   const handleAnswer = (answer: string) => {
     const newAnswers = [...answers, answer];
     setAnswers(newAnswers);
-
     if (questionIndex < quizQuestions.length - 1) {
       setQuestionIndex(questionIndex + 1);
     } else {
@@ -73,12 +73,14 @@ const Index = () => {
   const handleBack = () => {
     if (step === "age") {
       setStep("gender");
+    } else if (step === "ready") {
+      setStep("age");
     } else if (step === "question") {
       if (questionIndex > 0) {
         setQuestionIndex(questionIndex - 1);
         setAnswers(answers.slice(0, -1));
       } else {
-        setStep("age");
+        setStep("ready");
       }
     } else if (step === "email") {
       setStep("question");
@@ -90,7 +92,8 @@ const Index = () => {
   return (
     <AnimatePresence mode="wait">
       {step === "gender" && <GenderStep key="gender" onSelect={handleGender} />}
-      {step === "age" && <AgeStep key="age" onSelect={handleAge} onBack={handleBack} />}
+      {step === "age" && <AgeStep key="age" gender={gender} onSelect={handleAge} onBack={handleBack} />}
+      {step === "ready" && <ReadyStep key="ready" gender={gender} onContinue={handleReady} />}
       {step === "question" && (
         <QuestionStep
           key={`q-${questionIndex}`}
