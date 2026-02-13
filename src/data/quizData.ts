@@ -4,105 +4,38 @@ export type QuizQuestion = {
   options: string[];
 };
 
+// Questions are the same for male and female
 export const quizQuestions: QuizQuestion[] = [
   {
     id: 1,
-    question: "Com que frequência você lê a Bíblia?",
+    question: "Escolha um versículo bíblico que fale ao seu coração.",
     options: [
-      "Todos os dias",
-      "Algumas vezes por semana",
-      "Uma vez por semana",
-      "Raramente",
+      '"Aquietai-vos e sabei que eu sou Deus" – Salmo 46:10',
+      '"Aonde fores, irei eu" – Rute 1:16',
+      '"Para um tempo como este" – Ester 4:14',
+      '"Sejam fortes e corajosos" – Josué 1:9',
     ],
   },
   {
     id: 2,
-    question: "Como você se sente em relação à sua vida espiritual atualmente?",
+    question: "Escolha uma frase que tenha significado para você.",
     options: [
-      "Forte e conectado com Deus",
-      "Em crescimento, mas com dificuldades",
-      "Desconectado e buscando direção",
-      "Acabei de começar minha jornada",
+      '"Deixe para lá e entregue a Deus"',
+      '"Fé acima do medo"',
+      '"Você nasceu para este momento"',
+      '"Eu consigo fazer coisas difíceis com Cristo"',
+      '"O tempo de Deus é perfeito"',
     ],
   },
   {
     id: 3,
-    question: "O que mais te motiva na fé?",
+    question: "Escolha uma história bíblica que te inspire.",
     options: [
-      "Ajudar e servir os outros",
-      "Buscar sabedoria e conhecimento",
-      "Liderar e inspirar pessoas",
-      "Adorar e louvar a Deus",
-    ],
-  },
-  {
-    id: 4,
-    question: "Qual é o seu maior desafio espiritual?",
-    options: [
-      "Manter a consistência na oração",
-      "Confiar no plano de Deus",
-      "Perdoar quem me magoou",
-      "Resistir às tentações do mundo",
-    ],
-  },
-  {
-    id: 5,
-    question: "Em um grupo, qual papel você naturalmente assume?",
-    options: [
-      "O líder que guia os outros",
-      "O conselheiro que ouve e aconselha",
-      "O servidor que ajuda nos bastidores",
-      "O comunicador que compartilha a Palavra",
-    ],
-  },
-  {
-    id: 6,
-    question: "Como você prefere se conectar com Deus?",
-    options: [
-      "Através da oração silenciosa",
-      "Estudando as Escrituras",
-      "Na comunidade e adoração coletiva",
-      "Através da natureza e contemplação",
-    ],
-  },
-  {
-    id: 7,
-    question: "O que mais te toca em uma história bíblica?",
-    options: [
-      "A coragem dos heróis da fé",
-      "A misericórdia e o perdão de Deus",
-      "A sabedoria nos provérbios e ensinamentos",
-      "Os milagres e a intervenção divina",
-    ],
-  },
-  {
-    id: 8,
-    question: "Qual área da sua vida você mais deseja transformar?",
-    options: [
-      "Relacionamentos e família",
-      "Carreira e propósito",
-      "Saúde mental e emocional",
-      "Crescimento espiritual profundo",
-    ],
-  },
-  {
-    id: 9,
-    question: "Como você lida com momentos difíceis?",
-    options: [
-      "Oro e busco conforto em Deus",
-      "Busco conselhos de pessoas sábias",
-      "Enfrento com força e determinação",
-      "Reflito e busco aprender com a situação",
-    ],
-  },
-  {
-    id: 10,
-    question: "Qual versículo mais ressoa com você?",
-    options: [
-      '"Tudo posso naquele que me fortalece" - Filipenses 4:13',
-      '"O Senhor é meu pastor, nada me faltará" - Salmo 23:1',
-      '"Porque Deus amou o mundo de tal maneira..." - João 3:16',
-      '"Confia no Senhor de todo o teu coração" - Provérbios 3:5',
+      "Noé e a arca",
+      "Moisés conduzindo o povo à terra prometida.",
+      "Daniel na cova dos leões",
+      "Jesus ressuscitando Lázaro dos mortos",
+      "O nascimento de Jesus",
     ],
   },
 ];
@@ -155,10 +88,19 @@ export const archetypes: Record<string, ArchetypeResult> = {
   },
 };
 
-export const ageRanges = [
-  "18-24",
-  "25-34",
-  "35-44",
-  "45-54",
-  "55+",
-];
+export const ageRanges = ["18–34", "35–44", "45–54", "55+"];
+
+export const ageImages: Record<string, string[]> = {
+  male: [
+    "/images/age-male-18.webp",
+    "/images/age-male-35.webp",
+    "/images/age-male-45.webp",
+    "/images/age-male-55.webp",
+  ],
+  female: [
+    "/images/age-female-18.webp",
+    "/images/age-female-35.webp",
+    "/images/age-female-45.webp",
+    "/images/age-female-55.webp",
+  ],
+};

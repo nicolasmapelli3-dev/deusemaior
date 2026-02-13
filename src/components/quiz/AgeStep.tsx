@@ -1,41 +1,57 @@
 import { motion } from "framer-motion";
-import { ChevronRight } from "lucide-react";
-import QuizProgress from "./QuizProgress";
-import { ageRanges } from "@/data/quizData";
+import { ChevronRight, Menu } from "lucide-react";
+import { ageRanges, ageImages } from "@/data/quizData";
 
 interface AgeStepProps {
+  gender: string;
   onSelect: (age: string) => void;
   onBack: () => void;
 }
 
-const AgeStep = ({ onSelect, onBack }: AgeStepProps) => {
+const AgeStep = ({ gender, onSelect, onBack }: AgeStepProps) => {
+  const images = ageImages[gender] || ageImages.male;
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -50 }}
       transition={{ duration: 0.3 }}
-      className="min-h-screen bg-[hsl(30,25%,96%)] flex flex-col font-['Plus_Jakarta_Sans',sans-serif]"
+      className="min-h-screen bg-white flex flex-col font-['Plus_Jakarta_Sans',sans-serif]"
     >
-      <QuizProgress current={1} total={12} onBack={onBack} />
+      <header className="flex items-center justify-between px-4 py-3">
+        <div className="w-10" />
+        <h1 className="text-xl font-bold tracking-[0.15em] text-[hsl(30,10%,20%)]">
+          DUOMO
+        </h1>
+        <button className="w-10 h-10 flex items-center justify-center">
+          <Menu className="w-6 h-6 text-[hsl(30,10%,30%)]" />
+        </button>
+      </header>
 
-      <main className="flex-1 flex flex-col items-center px-4 pt-8 pb-8 max-w-lg mx-auto w-full">
-        <h2 className="text-2xl font-bold text-[hsl(30,10%,15%)] text-center mb-2">
-          Qual é a sua idade?
+      <main className="flex-1 flex flex-col items-center px-4 pt-6 pb-8 max-w-lg mx-auto w-full">
+        <h2 className="text-2xl md:text-3xl font-bold text-[hsl(30,10%,15%)] text-center mb-8 font-['Lora',serif] italic leading-snug">
+          Por favor, selecione sua{"\n"}faixa etária.
         </h2>
-        <p className="text-sm text-[hsl(30,10%,45%)] mb-8 text-center">
-          Isso nos ajuda a personalizar sua experiência
-        </p>
 
-        <div className="flex flex-col gap-3 w-full max-w-sm">
-          {ageRanges.map((age) => (
+        <div className="grid grid-cols-2 gap-4 w-full max-w-md">
+          {ageRanges.map((age, i) => (
             <button
               key={age}
               onClick={() => onSelect(age)}
-              className="flex items-center justify-between w-full px-5 py-4 rounded-2xl bg-white border border-[hsl(30,15%,88%)] text-[hsl(30,10%,20%)] font-medium text-left hover:border-[hsl(30,30%,60%)] hover:bg-[hsl(30,25%,98%)] transition-all active:scale-[0.98]"
+              className="relative rounded-2xl overflow-hidden group cursor-pointer transition-transform hover:scale-[1.02] active:scale-[0.98]"
             >
-              <span>{age} anos</span>
-              <ChevronRight className="w-5 h-5 text-[hsl(30,10%,50%)]" />
+              <img
+                src={images[i]}
+                alt={`${age} anos`}
+                className="w-full aspect-square object-cover object-top"
+              />
+              <div className="absolute bottom-3 left-3 right-3">
+                <div className="flex items-center justify-between bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2.5 shadow-sm">
+                  <span className="text-sm font-semibold text-[hsl(30,10%,20%)]">{age}</span>
+                  <ChevronRight className="w-4 h-4 text-[hsl(30,10%,40%)]" />
+                </div>
+              </div>
             </button>
           ))}
         </div>
