@@ -149,7 +149,52 @@ export const quizQuestionsPart2: QuizQuestion[] = [
   },
 ];
 
-export const allQuizQuestions: QuizQuestion[] = [...quizQuestionsPart1, ...quizQuestionsPart2];
+export const quizQuestionsPart3: QuizQuestion[] = [
+  {
+    id: 13,
+    question: "Como você descreveria sua experiência de estudo bíblico até agora?",
+    options: [
+      "Sou iniciante",
+      "Conheço algumas partes",
+      "Eu estudei isso minuciosamente.",
+      "Eu não tenho certeza",
+    ],
+  },
+  {
+    id: 14,
+    question: "Como você se sente ao ler a Palavra?",
+    options: [
+      "Edificado",
+      "Tranquilo",
+      "Focado",
+      "Eu ainda não leio muito.",
+      "Eu não tenho certeza",
+    ],
+  },
+  {
+    id: 15,
+    question: "Descreva seu relacionamento atual com Deus.",
+    options: [
+      "Forte e em crescimento",
+      "Precisa de reforma.",
+      "Eu não tenho certeza",
+      "Outro",
+    ],
+  },
+  {
+    id: 16,
+    question: "Onde você se sente mais à vontade para ler a Bíblia?",
+    options: [
+      "Um cantinho aconchegante em casa",
+      "Ao ar livre, em contato com a natureza.",
+      "Em uma igreja ou santuário tranquilo",
+      "Em uma mesa com anotações",
+      "Na cama, de manhã cedo ou à noite.",
+    ],
+  },
+];
+
+export const allQuizQuestions: QuizQuestion[] = [...quizQuestionsPart1, ...quizQuestionsPart2, ...quizQuestionsPart3];
 
 export type ArchetypeResult = {
   name: string;
