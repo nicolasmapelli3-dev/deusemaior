@@ -5,14 +5,15 @@ import AgeStep from "@/components/quiz/AgeStep";
 import ReadyStep from "@/components/quiz/ReadyStep";
 import QuestionStep from "@/components/quiz/QuestionStep";
 import MidwayStep from "@/components/quiz/MidwayStep";
+import Midway2Step from "@/components/quiz/Midway2Step";
 import EmailStep from "@/components/quiz/EmailStep";
 import LoadingStep from "@/components/quiz/LoadingStep";
 import ResultStep from "@/components/quiz/ResultStep";
-import { quizQuestionsPart1, quizQuestionsPart2, allQuizQuestions, archetypes, type ArchetypeResult } from "@/data/quizData";
+import { quizQuestionsPart1, quizQuestionsPart2, quizQuestionsPart3, allQuizQuestions, archetypes, type ArchetypeResult } from "@/data/quizData";
 
-type Step = "gender" | "age" | "ready" | "question-part1" | "midway" | "question-part2" | "email" | "loading" | "result";
+type Step = "gender" | "age" | "ready" | "question-part1" | "midway" | "question-part2" | "midway2" | "question-part3" | "email" | "loading" | "result";
 
-const TOTAL_STEPS = allQuizQuestions.length + 1; // all questions + email
+const TOTAL_STEPS = allQuizQuestions.length + 1;
 
 const Index = () => {
   const [step, setStep] = useState<Step>("gender");
@@ -38,19 +39,9 @@ const Index = () => {
     return archetypes[maxKey];
   }, []);
 
-  const handleGender = (g: string) => {
-    setGender(g);
-    setStep("age");
-  };
-
-  const handleAge = () => {
-    setStep("ready");
-  };
-
-  const handleReady = () => {
-    setStep("question-part1");
-    setQuestionIndex(0);
-  };
+  const handleGender = (g: string) => { setGender(g); setStep("age"); };
+  const handleAge = () => { setStep("ready"); };
+  const handleReady = () => { setStep("question-part1"); setQuestionIndex(0); };
 
   const handleAnswerPart1 = (answer: string) => {
     const newAnswers = [...answers, answer];
@@ -62,10 +53,7 @@ const Index = () => {
     }
   };
 
-  const handleMidway = () => {
-    setStep("question-part2");
-    setQuestionIndex(0);
-  };
+  const handleMidway = () => { setStep("question-part2"); setQuestionIndex(0); };
 
   const handleAnswerPart2 = (answer: string) => {
     const newAnswers = [...answers, answer];
@@ -73,13 +61,23 @@ const Index = () => {
     if (questionIndex < quizQuestionsPart2.length - 1) {
       setQuestionIndex(questionIndex + 1);
     } else {
+      setStep("midway2");
+    }
+  };
+
+  const handleMidway2 = () => { setStep("question-part3"); setQuestionIndex(0); };
+
+  const handleAnswerPart3 = (answer: string) => {
+    const newAnswers = [...answers, answer];
+    setAnswers(newAnswers);
+    if (questionIndex < quizQuestionsPart3.length - 1) {
+      setQuestionIndex(questionIndex + 1);
+    } else {
       setStep("email");
     }
   };
 
-  const handleEmail = () => {
-    setStep("loading");
-  };
+  const handleEmail = () => { setStep("loading"); };
 
   const handleLoadingComplete = useCallback(() => {
     setResult(calculateResult(answers));
@@ -92,33 +90,27 @@ const Index = () => {
     } else if (step === "ready") {
       setStep("age");
     } else if (step === "question-part1") {
-      if (questionIndex > 0) {
-        setQuestionIndex(questionIndex - 1);
-        setAnswers(answers.slice(0, -1));
-      } else {
-        setStep("ready");
-      }
+      if (questionIndex > 0) { setQuestionIndex(questionIndex - 1); setAnswers(answers.slice(0, -1)); }
+      else { setStep("ready"); }
     } else if (step === "midway") {
-      setStep("question-part1");
-      setQuestionIndex(quizQuestionsPart1.length - 1);
-      setAnswers(answers.slice(0, -1));
+      setStep("question-part1"); setQuestionIndex(quizQuestionsPart1.length - 1); setAnswers(answers.slice(0, -1));
     } else if (step === "question-part2") {
-      if (questionIndex > 0) {
-        setQuestionIndex(questionIndex - 1);
-        setAnswers(answers.slice(0, -1));
-      } else {
-        setStep("midway");
-      }
+      if (questionIndex > 0) { setQuestionIndex(questionIndex - 1); setAnswers(answers.slice(0, -1)); }
+      else { setStep("midway"); }
+    } else if (step === "midway2") {
+      setStep("question-part2"); setQuestionIndex(quizQuestionsPart2.length - 1); setAnswers(answers.slice(0, -1));
+    } else if (step === "question-part3") {
+      if (questionIndex > 0) { setQuestionIndex(questionIndex - 1); setAnswers(answers.slice(0, -1)); }
+      else { setStep("midway2"); }
     } else if (step === "email") {
-      setStep("question-part2");
-      setQuestionIndex(quizQuestionsPart2.length - 1);
-      setAnswers(answers.slice(0, -1));
+      setStep("question-part3"); setQuestionIndex(quizQuestionsPart3.length - 1); setAnswers(answers.slice(0, -1));
     }
   };
 
   const getCurrentProgress = () => {
     if (step === "question-part1") return questionIndex + 1;
     if (step === "question-part2") return quizQuestionsPart1.length + questionIndex + 1;
+    if (step === "question-part3") return quizQuestionsPart1.length + quizQuestionsPart2.length + questionIndex + 1;
     if (step === "email") return allQuizQuestions.length + 1;
     return 0;
   };
@@ -129,33 +121,18 @@ const Index = () => {
       {step === "age" && <AgeStep key="age" gender={gender} onSelect={handleAge} onBack={handleBack} />}
       {step === "ready" && <ReadyStep key="ready" gender={gender} onContinue={handleReady} />}
       {step === "question-part1" && (
-        <QuestionStep
-          key={`q1-${questionIndex}`}
-          question={quizQuestionsPart1[questionIndex]}
-          questionIndex={getCurrentProgress()}
-          totalSteps={TOTAL_STEPS}
-          onSelect={handleAnswerPart1}
-          onBack={handleBack}
-        />
+        <QuestionStep key={`q1-${questionIndex}`} question={quizQuestionsPart1[questionIndex]} questionIndex={getCurrentProgress()} totalSteps={TOTAL_STEPS} onSelect={handleAnswerPart1} onBack={handleBack} />
       )}
       {step === "midway" && <MidwayStep key="midway" onContinue={handleMidway} onBack={handleBack} />}
       {step === "question-part2" && (
-        <QuestionStep
-          key={`q2-${questionIndex}`}
-          question={quizQuestionsPart2[questionIndex]}
-          questionIndex={getCurrentProgress()}
-          totalSteps={TOTAL_STEPS}
-          onSelect={handleAnswerPart2}
-          onBack={handleBack}
-        />
+        <QuestionStep key={`q2-${questionIndex}`} question={quizQuestionsPart2[questionIndex]} questionIndex={getCurrentProgress()} totalSteps={TOTAL_STEPS} onSelect={handleAnswerPart2} onBack={handleBack} />
+      )}
+      {step === "midway2" && <Midway2Step key="midway2" onContinue={handleMidway2} onBack={handleBack} />}
+      {step === "question-part3" && (
+        <QuestionStep key={`q3-${questionIndex}`} question={quizQuestionsPart3[questionIndex]} questionIndex={getCurrentProgress()} totalSteps={TOTAL_STEPS} onSelect={handleAnswerPart3} onBack={handleBack} />
       )}
       {step === "email" && (
-        <EmailStep
-          key="email"
-          totalSteps={TOTAL_STEPS}
-          onSubmit={handleEmail}
-          onBack={handleBack}
-        />
+        <EmailStep key="email" totalSteps={TOTAL_STEPS} onSubmit={handleEmail} onBack={handleBack} />
       )}
       {step === "loading" && <LoadingStep key="loading" onComplete={handleLoadingComplete} />}
       {step === "result" && result && <ResultStep key="result" result={result} gender={gender} />}
