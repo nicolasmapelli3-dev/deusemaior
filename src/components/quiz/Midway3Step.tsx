@@ -31,7 +31,7 @@ const Midway3Step = ({ onContinue, onBack }: Midway3StepProps) => {
       <main className="flex-1 flex flex-col items-center justify-between px-4 pt-8 pb-6 max-w-lg mx-auto w-full">
         <div className="flex-1 flex flex-col items-center justify-center">
           <img
-            src="/images/mosaic-table.webp"
+            src="/images/midway3.webp"
             alt="Caminho espiritual"
             className="w-64 h-64 object-cover rounded-2xl mb-8 shadow-md"
           />
