@@ -1,16 +1,18 @@
 import { motion } from "framer-motion";
 import { ChevronLeft } from "lucide-react";
+import { ageRanges, ageImages } from "@/data/quizData";
 
 interface ProfileSummaryStepProps {
   gender: string;
+  age: string;
   onContinue: () => void;
   onBack: () => void;
 }
 
-const ProfileSummaryStep = ({ gender, onContinue, onBack }: ProfileSummaryStepProps) => {
-  const avatarSrc = gender === "female" 
-    ? "/images/age-female-35.webp" 
-    : "/images/age-male-35.webp";
+const ProfileSummaryStep = ({ gender, age, onContinue, onBack }: ProfileSummaryStepProps) => {
+  const ageIndex = ageRanges.indexOf(age);
+  const images = ageImages[gender] || ageImages.male;
+  const avatarSrc = images[ageIndex >= 0 ? ageIndex : 0];
 
   return (
     <motion.div
