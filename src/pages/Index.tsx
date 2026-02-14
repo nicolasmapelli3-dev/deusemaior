@@ -20,6 +20,7 @@ const TOTAL_STEPS = allQuizQuestions.length + 1;
 const Index = () => {
   const [step, setStep] = useState<Step>("gender");
   const [gender, setGender] = useState("");
+  const [age, setAge] = useState("");
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
   const [result, setResult] = useState<ArchetypeResult | null>(null);
@@ -42,7 +43,7 @@ const Index = () => {
   }, []);
 
   const handleGender = (g: string) => { setGender(g); setStep("age"); };
-  const handleAge = () => { setStep("ready"); };
+  const handleAge = (a: string) => { setAge(a); setStep("ready"); };
   const handleReady = () => { setStep("question-part1"); setQuestionIndex(0); };
 
   const handleAnswerPart1 = (answer: string) => {
@@ -158,7 +159,7 @@ const Index = () => {
       {step === "question-part4" && (
         <QuestionStep key={`q4-${questionIndex}`} question={quizQuestionsPart4[questionIndex]} questionIndex={getCurrentProgress()} totalSteps={TOTAL_STEPS} onSelect={handleAnswerPart4} onBack={handleBack} />
       )}
-      {step === "profile-summary" && <ProfileSummaryStep key="profile-summary" gender={gender} onContinue={handleProfileSummary} onBack={handleBack} />}
+      {step === "profile-summary" && <ProfileSummaryStep key="profile-summary" gender={gender} age={age} onContinue={handleProfileSummary} onBack={handleBack} />}
       {step === "email" && (
         <EmailStep key="email" totalSteps={TOTAL_STEPS} onSubmit={handleEmail} onBack={handleBack} />
       )}
