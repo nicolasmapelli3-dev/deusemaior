@@ -31,7 +31,7 @@ const MidwayStep = ({ onContinue, onBack }: MidwayStepProps) => {
       <main className="flex-1 flex flex-col items-center justify-between px-4 pt-8 pb-6 max-w-lg mx-auto w-full">
         <div className="flex-1 flex flex-col items-center justify-center">
           <img
-            src="/images/portal.webp"
+            src="/images/break3.webp"
             alt="Portal espiritual"
             className="w-64 h-64 object-cover rounded-2xl mb-8 shadow-md"
           />
