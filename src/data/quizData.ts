@@ -194,7 +194,46 @@ export const quizQuestionsPart3: QuizQuestion[] = [
   },
 ];
 
-export const allQuizQuestions: QuizQuestion[] = [...quizQuestionsPart1, ...quizQuestionsPart2, ...quizQuestionsPart3];
+export const quizQuestionsPart4: QuizQuestion[] = [
+  {
+    id: 17,
+    question: "Que tipo de apoio diário seria mais útil para você neste momento?",
+    options: [
+      "Foco e clareza",
+      "Alegrar",
+      "A orientação de Deus",
+      "paz interior",
+      "Endereço",
+      "Outro",
+    ],
+  },
+  {
+    id: 18,
+    question: "O que significa crescimento espiritual para você?",
+    options: [
+      "Para se sentir mais perto de Deus.",
+      "Confie mais nEle",
+      "Viver com sabedoria",
+      "Tome decisões melhores.",
+      "Outro",
+    ],
+  },
+  {
+    id: 19,
+    question: "Em qual área da sua vida você mais deseja que Deus transforme?",
+    subtitle: "Selecione todas as opções aplicáveis.",
+    options: [
+      "Pensamentos",
+      "Emoções",
+      "Hábitos",
+      "Relações",
+      "Autoestima",
+    ],
+    multiSelect: true,
+  },
+];
+
+export const allQuizQuestions: QuizQuestion[] = [...quizQuestionsPart1, ...quizQuestionsPart2, ...quizQuestionsPart3, ...quizQuestionsPart4];
 
 export type ArchetypeResult = {
   name: string;
