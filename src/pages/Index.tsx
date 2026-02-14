@@ -7,13 +7,14 @@ import QuestionStep from "@/components/quiz/QuestionStep";
 import MidwayStep from "@/components/quiz/MidwayStep";
 import Midway2Step from "@/components/quiz/Midway2Step";
 import Midway3Step from "@/components/quiz/Midway3Step";
+import ProgressCircleStep from "@/components/quiz/ProgressCircleStep";
 import ProfileSummaryStep from "@/components/quiz/ProfileSummaryStep";
 import EmailStep from "@/components/quiz/EmailStep";
 import LoadingStep from "@/components/quiz/LoadingStep";
 import ResultStep from "@/components/quiz/ResultStep";
 import { quizQuestionsPart1, quizQuestionsPart2, quizQuestionsPart3, quizQuestionsPart4, allQuizQuestions, archetypes, type ArchetypeResult } from "@/data/quizData";
 
-type Step = "gender" | "age" | "ready" | "question-part1" | "midway" | "question-part2" | "midway2" | "question-part3" | "midway3" | "question-part4" | "profile-summary" | "email" | "loading" | "result";
+type Step = "gender" | "age" | "ready" | "question-part1" | "midway" | "question-part2" | "midway2" | "question-part3" | "midway3" | "question-part4" | "progress-circle" | "profile-summary" | "email" | "loading" | "result";
 
 const TOTAL_STEPS = allQuizQuestions.length + 1;
 
@@ -88,10 +89,11 @@ const Index = () => {
     if (questionIndex < quizQuestionsPart4.length - 1) {
       setQuestionIndex(questionIndex + 1);
     } else {
-      setStep("profile-summary");
+      setStep("progress-circle");
     }
   };
 
+  const handleProgressCircle = () => { setStep("profile-summary"); };
   const handleProfileSummary = () => { setStep("email"); };
   const handleEmail = () => { setStep("loading"); };
 
@@ -123,8 +125,10 @@ const Index = () => {
     } else if (step === "question-part4") {
       if (questionIndex > 0) { setQuestionIndex(questionIndex - 1); setAnswers(answers.slice(0, -1)); }
       else { setStep("midway3"); }
-    } else if (step === "profile-summary") {
+    } else if (step === "progress-circle") {
       setStep("question-part4"); setQuestionIndex(quizQuestionsPart4.length - 1); setAnswers(answers.slice(0, -1));
+    } else if (step === "profile-summary") {
+      setStep("progress-circle");
     } else if (step === "email") {
       setStep("profile-summary");
     }
@@ -159,6 +163,7 @@ const Index = () => {
       {step === "question-part4" && (
         <QuestionStep key={`q4-${questionIndex}`} question={quizQuestionsPart4[questionIndex]} questionIndex={getCurrentProgress()} totalSteps={TOTAL_STEPS} onSelect={handleAnswerPart4} onBack={handleBack} />
       )}
+      {step === "progress-circle" && <ProgressCircleStep key="progress-circle" onComplete={handleProgressCircle} />}
       {step === "profile-summary" && <ProfileSummaryStep key="profile-summary" gender={gender} age={age} onContinue={handleProfileSummary} onBack={handleBack} />}
       {step === "email" && (
         <EmailStep key="email" totalSteps={TOTAL_STEPS} onSubmit={handleEmail} onBack={handleBack} />
