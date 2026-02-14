@@ -9,12 +9,13 @@ import Midway2Step from "@/components/quiz/Midway2Step";
 import Midway3Step from "@/components/quiz/Midway3Step";
 import ProgressCircleStep from "@/components/quiz/ProgressCircleStep";
 import ProfileSummaryStep from "@/components/quiz/ProfileSummaryStep";
+import YesNoStep from "@/components/quiz/YesNoStep";
 import EmailStep from "@/components/quiz/EmailStep";
-import LoadingStep from "@/components/quiz/LoadingStep";
+import PlanLoadingStep from "@/components/quiz/PlanLoadingStep";
 import ResultStep from "@/components/quiz/ResultStep";
 import { quizQuestionsPart1, quizQuestionsPart2, quizQuestionsPart3, quizQuestionsPart4, allQuizQuestions, archetypes, type ArchetypeResult } from "@/data/quizData";
 
-type Step = "gender" | "age" | "ready" | "question-part1" | "midway" | "question-part2" | "midway2" | "question-part3" | "midway3" | "question-part4" | "progress-circle" | "profile-summary" | "email" | "loading" | "result";
+type Step = "gender" | "age" | "ready" | "question-part1" | "midway" | "question-part2" | "midway2" | "question-part3" | "midway3" | "question-part4" | "progress-circle" | "profile-summary" | "yesno1" | "yesno2" | "email" | "plan-loading" | "result";
 
 const TOTAL_STEPS = allQuizQuestions.length + 1;
 
@@ -94,10 +95,12 @@ const Index = () => {
   };
 
   const handleProgressCircle = () => { setStep("profile-summary"); };
-  const handleProfileSummary = () => { setStep("email"); };
-  const handleEmail = () => { setStep("loading"); };
+  const handleProfileSummary = () => { setStep("yesno1"); };
+  const handleYesNo1 = () => { setStep("yesno2"); };
+  const handleYesNo2 = () => { setStep("email"); };
+  const handleEmail = () => { setStep("plan-loading"); };
 
-  const handleLoadingComplete = useCallback(() => {
+  const handlePlanLoadingComplete = useCallback(() => {
     setResult(calculateResult(answers));
     setStep("result");
   }, [answers, calculateResult]);
@@ -129,8 +132,14 @@ const Index = () => {
       setStep("question-part4"); setQuestionIndex(quizQuestionsPart4.length - 1); setAnswers(answers.slice(0, -1));
     } else if (step === "profile-summary") {
       setStep("progress-circle");
-    } else if (step === "email") {
+    } else if (step === "yesno1") {
       setStep("profile-summary");
+    } else if (step === "yesno2") {
+      setStep("yesno1");
+    } else if (step === "email") {
+      setStep("yesno2");
+    } else if (step === "plan-loading") {
+      setStep("email");
     }
   };
 
@@ -139,7 +148,7 @@ const Index = () => {
     if (step === "question-part2") return quizQuestionsPart1.length + questionIndex + 1;
     if (step === "question-part3") return quizQuestionsPart1.length + quizQuestionsPart2.length + questionIndex + 1;
     if (step === "question-part4") return quizQuestionsPart1.length + quizQuestionsPart2.length + quizQuestionsPart3.length + questionIndex + 1;
-    if (step === "email") return allQuizQuestions.length + 1;
+    if (step === "yesno1" || step === "yesno2" || step === "email") return allQuizQuestions.length + 1;
     return 0;
   };
 
@@ -165,10 +174,16 @@ const Index = () => {
       )}
       {step === "progress-circle" && <ProgressCircleStep key="progress-circle" onComplete={handleProgressCircle} />}
       {step === "profile-summary" && <ProfileSummaryStep key="profile-summary" gender={gender} age={age} onContinue={handleProfileSummary} onBack={handleBack} />}
+      {step === "yesno1" && (
+        <YesNoStep key="yesno1" question="Você gostaria de fortalecer sua vida espiritual?" current={getCurrentProgress()} total={TOTAL_STEPS} onSelect={handleYesNo1} onBack={handleBack} />
+      )}
+      {step === "yesno2" && (
+        <YesNoStep key="yesno2" question="Você gostaria de descobrir como viver sua identidade espiritual todos os dias?" current={getCurrentProgress()} total={TOTAL_STEPS} onSelect={handleYesNo2} onBack={handleBack} />
+      )}
       {step === "email" && (
         <EmailStep key="email" totalSteps={TOTAL_STEPS} onSubmit={handleEmail} onBack={handleBack} />
       )}
-      {step === "loading" && <LoadingStep key="loading" onComplete={handleLoadingComplete} />}
+      {step === "plan-loading" && <PlanLoadingStep key="plan-loading" onComplete={handlePlanLoadingComplete} onBack={handleBack} />}
       {step === "result" && result && <ResultStep key="result" result={result} gender={gender} />}
     </AnimatePresence>
   );
