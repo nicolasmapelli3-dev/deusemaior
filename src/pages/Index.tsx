@@ -12,10 +12,11 @@ import ProfileSummaryStep from "@/components/quiz/ProfileSummaryStep";
 import YesNoStep from "@/components/quiz/YesNoStep";
 import EmailStep from "@/components/quiz/EmailStep";
 import PlanLoadingStep from "@/components/quiz/PlanLoadingStep";
+import PlanReadyStep from "@/components/quiz/PlanReadyStep";
 import ResultStep from "@/components/quiz/ResultStep";
 import { quizQuestionsPart1, quizQuestionsPart2, quizQuestionsPart3, quizQuestionsPart4, allQuizQuestions, archetypes, type ArchetypeResult } from "@/data/quizData";
 
-type Step = "gender" | "age" | "ready" | "question-part1" | "midway" | "question-part2" | "midway2" | "question-part3" | "midway3" | "question-part4" | "progress-circle" | "profile-summary" | "yesno1" | "yesno2" | "email" | "plan-loading" | "result";
+type Step = "gender" | "age" | "ready" | "question-part1" | "midway" | "question-part2" | "midway2" | "question-part3" | "midway3" | "question-part4" | "progress-circle" | "profile-summary" | "yesno1" | "yesno2" | "email" | "plan-loading" | "plan-ready" | "result";
 
 const TOTAL_STEPS = allQuizQuestions.length + 1;
 
@@ -101,6 +102,10 @@ const Index = () => {
   const handleEmail = () => { setStep("plan-loading"); };
 
   const handlePlanLoadingComplete = useCallback(() => {
+    setStep("plan-ready");
+  }, []);
+
+  const handlePlanReady = useCallback(() => {
     setResult(calculateResult(answers));
     setStep("result");
   }, [answers, calculateResult]);
@@ -140,6 +145,8 @@ const Index = () => {
       setStep("yesno2");
     } else if (step === "plan-loading") {
       setStep("email");
+    } else if (step === "plan-ready") {
+      setStep("plan-loading");
     }
   };
 
@@ -184,6 +191,7 @@ const Index = () => {
         <EmailStep key="email" totalSteps={TOTAL_STEPS} onSubmit={handleEmail} onBack={handleBack} />
       )}
       {step === "plan-loading" && <PlanLoadingStep key="plan-loading" onComplete={handlePlanLoadingComplete} onBack={handleBack} />}
+      {step === "plan-ready" && <PlanReadyStep key="plan-ready" onContinue={handlePlanReady} onBack={handleBack} />}
       {step === "result" && result && <ResultStep key="result" result={result} gender={gender} />}
     </AnimatePresence>
   );
