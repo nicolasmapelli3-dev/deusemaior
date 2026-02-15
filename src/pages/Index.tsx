@@ -192,7 +192,7 @@ const Index = () => {
       )}
       {step === "plan-loading" && <PlanLoadingStep key="plan-loading" onComplete={handlePlanLoadingComplete} onBack={handleBack} />}
       {step === "plan-ready" && <PlanReadyStep key="plan-ready" onContinue={handlePlanReady} onBack={handleBack} />}
-      {step === "result" && result && <ResultStep key="result" result={result} gender={gender} />}
+      {step === "result" && result && <ResultStep key="result" result={result} gender={gender} age={age} />}
     </AnimatePresence>
   );
 };
