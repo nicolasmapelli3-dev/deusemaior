@@ -10,13 +10,13 @@ import Midway3Step from "@/components/quiz/Midway3Step";
 import ProgressCircleStep from "@/components/quiz/ProgressCircleStep";
 import ProfileSummaryStep from "@/components/quiz/ProfileSummaryStep";
 import YesNoStep from "@/components/quiz/YesNoStep";
-import EmailStep from "@/components/quiz/EmailStep";
+
 import PlanLoadingStep from "@/components/quiz/PlanLoadingStep";
 import PlanReadyStep from "@/components/quiz/PlanReadyStep";
 import ResultStep from "@/components/quiz/ResultStep";
 import { quizQuestionsPart1, quizQuestionsPart2, quizQuestionsPart3, quizQuestionsPart4, allQuizQuestions, archetypesMale, archetypesFemale, type ArchetypeResult } from "@/data/quizData";
 
-type Step = "gender" | "age" | "ready" | "question-part1" | "midway" | "question-part2" | "midway2" | "question-part3" | "midway3" | "question-part4" | "progress-circle" | "profile-summary" | "yesno1" | "yesno2" | "email" | "plan-loading" | "plan-ready" | "result";
+type Step = "gender" | "age" | "ready" | "question-part1" | "midway" | "question-part2" | "midway2" | "question-part3" | "midway3" | "question-part4" | "progress-circle" | "profile-summary" | "yesno1" | "yesno2" | "plan-loading" | "plan-ready" | "result";
 
 const TOTAL_STEPS = allQuizQuestions.length + 1;
 
@@ -99,8 +99,7 @@ const Index = () => {
   const handleProgressCircle = () => { setStep("profile-summary"); };
   const handleProfileSummary = () => { setStep("yesno1"); };
   const handleYesNo1 = () => { setStep("yesno2"); };
-  const handleYesNo2 = () => { setStep("email"); };
-  const handleEmail = () => { setStep("plan-loading"); };
+  const handleYesNo2 = () => { setStep("plan-loading"); };
 
   const handlePlanLoadingComplete = useCallback(() => {
     setStep("plan-ready");
@@ -142,10 +141,8 @@ const Index = () => {
       setStep("profile-summary");
     } else if (step === "yesno2") {
       setStep("yesno1");
-    } else if (step === "email") {
-      setStep("yesno2");
     } else if (step === "plan-loading") {
-      setStep("email");
+      setStep("yesno2");
     } else if (step === "plan-ready") {
       setStep("plan-loading");
     }
@@ -156,7 +153,7 @@ const Index = () => {
     if (step === "question-part2") return quizQuestionsPart1.length + questionIndex + 1;
     if (step === "question-part3") return quizQuestionsPart1.length + quizQuestionsPart2.length + questionIndex + 1;
     if (step === "question-part4") return quizQuestionsPart1.length + quizQuestionsPart2.length + quizQuestionsPart3.length + questionIndex + 1;
-    if (step === "yesno1" || step === "yesno2" || step === "email") return allQuizQuestions.length + 1;
+    if (step === "yesno1" || step === "yesno2") return allQuizQuestions.length + 1;
     return 0;
   };
 
@@ -187,9 +184,6 @@ const Index = () => {
       )}
       {step === "yesno2" && (
         <YesNoStep key="yesno2" question="Você gostaria de descobrir como viver sua identidade espiritual todos os dias?" current={getCurrentProgress()} total={TOTAL_STEPS} onSelect={handleYesNo2} onBack={handleBack} />
-      )}
-      {step === "email" && (
-        <EmailStep key="email" totalSteps={TOTAL_STEPS} onSubmit={handleEmail} onBack={handleBack} />
       )}
       {step === "plan-loading" && <PlanLoadingStep key="plan-loading" onComplete={handlePlanLoadingComplete} onBack={handleBack} />}
       {step === "plan-ready" && <PlanReadyStep key="plan-ready" onContinue={handlePlanReady} onBack={handleBack} />}

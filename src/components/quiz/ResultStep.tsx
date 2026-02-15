@@ -52,11 +52,7 @@ const ResultStep = ({ result, gender, age }: ResultStepProps) => {
       transition={{ duration: 0.5 }}
       className="min-h-screen bg-white flex flex-col font-['Plus_Jakarta_Sans',sans-serif]"
     >
-      <header className="flex items-center justify-center px-4 py-3">
-        <h1 className="text-xl font-bold tracking-[0.15em] text-[hsl(30,10%,20%)]">
-          DUOMO
-        </h1>
-      </header>
+      <header className="flex items-center justify-center px-4 py-3" />
 
       <main className="flex-1 flex flex-col items-center px-4 pt-4 pb-8 max-w-lg mx-auto w-full">
         {/* Title */}
