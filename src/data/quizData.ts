@@ -242,9 +242,6 @@ export type ArchetypeResult = {
   traits: string[];
   biblicalFigure: string;
   verse: string;
-  chartScores: { label: string; value: number; color: string }[];
-  bulletPoints: string[];
-  planHighlight: string;
 };
 
 export const archetypes: Record<string, ArchetypeResult> = {
@@ -252,85 +249,37 @@ export const archetypes: Record<string, ArchetypeResult> = {
     name: "O Líder",
     title: "Seu arquétipo espiritual é",
     description:
-      "Sua identidade pode se assemelhar a um arquétipo, mas o que realmente importa é você conhecer a vida e a ação de Deus em seus momentos e trilhares.",
+      "Você tem o dom natural de liderar e inspirar outros na fé. Assim como Moisés guiou o povo de Israel, você é chamado a ser uma luz que ilumina o caminho para aqueles ao seu redor.",
     traits: ["Coragem", "Visão", "Determinação", "Inspiração"],
     biblicalFigure: "Moisés",
     verse: '"Sê forte e corajoso" - Josué 1:9',
-    chartScores: [
-      { label: "Fé", value: 90, color: "hsl(270,70%,60%)" },
-      { label: "Obediência", value: 75, color: "hsl(270,60%,65%)" },
-      { label: "Paciência", value: 60, color: "hsl(270,50%,70%)" },
-      { label: "Temperança", value: 50, color: "hsl(270,40%,75%)" },
-    ],
-    bulletPoints: [
-      "Dá pequenos passos de obediência, mesmo quando o resultado for incerto.",
-      "Escolha a confiança e invocação ousada quando a vida parecer incerta.",
-      "Espere pelo tempo de Deus sem impor seus próprios planos ao processo.",
-    ],
-    planHighlight: "Reunimos todas as suas respostas e elaboramos um plano na sua capacidade e riqueza com Deus a cada dia.",
   },
   servant: {
     name: "O Servo",
     title: "Seu arquétipo espiritual é",
     description:
-      "Sua identidade pode se assemelhar a um arquétipo, mas o que realmente importa é você conhecer a vida e a ação de Deus em seus momentos e trilhares.",
+      "Seu coração é voltado para servir os outros com humildade e amor. Assim como Jesus lavou os pés dos discípulos, você encontra propósito em colocar as necessidades dos outros acima das suas.",
     traits: ["Humildade", "Compaixão", "Generosidade", "Dedicação"],
     biblicalFigure: "Rute",
     verse: '"O maior entre vocês será aquele que serve" - Mateus 23:11',
-    chartScores: [
-      { label: "Fé", value: 70, color: "hsl(270,70%,60%)" },
-      { label: "Obediência", value: 90, color: "hsl(270,60%,65%)" },
-      { label: "Paciência", value: 80, color: "hsl(270,50%,70%)" },
-      { label: "Temperança", value: 65, color: "hsl(270,40%,75%)" },
-    ],
-    bulletPoints: [
-      "Dá pequenos passos de obediência, mesmo quando o resultado for incerto.",
-      "Escolha a confiança e invocação ousada quando a vida parecer incerta.",
-      "Espere pelo tempo de Deus sem impor seus próprios planos ao processo.",
-    ],
-    planHighlight: "Reunimos todas as suas respostas e elaboramos um plano na sua capacidade e riqueza com Deus a cada dia.",
   },
   wise: {
     name: "O Sábio",
     title: "Seu arquétipo espiritual é",
     description:
-      "Sua identidade pode se assemelhar a um arquétipo, mas o que realmente importa é você conhecer a vida e a ação de Deus em seus momentos e trilhares.",
+      "Você busca constantemente conhecimento e sabedoria divina. Como Salomão, você valoriza o entendimento profundo das Escrituras e aplica essa sabedoria em todas as áreas da vida.",
     traits: ["Discernimento", "Paciência", "Reflexão", "Conhecimento"],
     biblicalFigure: "Salomão",
     verse: '"O princípio da sabedoria é o temor do Senhor" - Provérbios 9:10',
-    chartScores: [
-      { label: "Fé", value: 65, color: "hsl(270,70%,60%)" },
-      { label: "Obediência", value: 70, color: "hsl(270,60%,65%)" },
-      { label: "Paciência", value: 90, color: "hsl(270,50%,70%)" },
-      { label: "Temperança", value: 85, color: "hsl(270,40%,75%)" },
-    ],
-    bulletPoints: [
-      "Dá pequenos passos de obediência, mesmo quando o resultado for incerto.",
-      "Escolha a confiança e invocação ousada quando a vida parecer incerta.",
-      "Espere pelo tempo de Deus sem impor seus próprios planos ao processo.",
-    ],
-    planHighlight: "Reunimos todas as suas respostas e elaboramos um plano na sua capacidade e riqueza com Deus a cada dia.",
   },
   worshipper: {
     name: "O Adorador",
     title: "Seu arquétipo espiritual é",
     description:
-      "Sua identidade pode se assemelhar a um arquétipo, mas o que realmente importa é você conhecer a vida e a ação de Deus em seus momentos e trilhares.",
+      "Sua conexão com Deus se expressa através da adoração profunda e contemplação. Como Davi, você tem um coração que transborda louvor e encontra paz na presença de Deus.",
     traits: ["Sensibilidade", "Expressividade", "Devoção", "Gratidão"],
     biblicalFigure: "Davi",
     verse: '"Bendirei o Senhor em todo o tempo" - Salmo 34:1',
-    chartScores: [
-      { label: "Fé", value: 85, color: "hsl(270,70%,60%)" },
-      { label: "Obediência", value: 60, color: "hsl(270,60%,65%)" },
-      { label: "Paciência", value: 70, color: "hsl(270,50%,70%)" },
-      { label: "Temperança", value: 90, color: "hsl(270,40%,75%)" },
-    ],
-    bulletPoints: [
-      "Dá pequenos passos de obediência, mesmo quando o resultado for incerto.",
-      "Escolha a confiança e invocação ousada quando a vida parecer incerta.",
-      "Espere pelo tempo de Deus sem impor seus próprios planos ao processo.",
-    ],
-    planHighlight: "Reunimos todas as suas respostas e elaboramos um plano na sua capacidade e riqueza com Deus a cada dia.",
   },
 };
 
