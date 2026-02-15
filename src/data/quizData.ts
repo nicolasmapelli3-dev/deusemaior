@@ -244,9 +244,9 @@ export type ArchetypeResult = {
   verse: string;
 };
 
-export const archetypes: Record<string, ArchetypeResult> = {
+export const archetypesMale: Record<string, ArchetypeResult> = {
   leader: {
-    name: "O Líder",
+    name: "Moisés",
     title: "Seu arquétipo espiritual é",
     description:
       "Você tem o dom natural de liderar e inspirar outros na fé. Assim como Moisés guiou o povo de Israel, você é chamado a ser uma luz que ilumina o caminho para aqueles ao seu redor.",
@@ -255,16 +255,16 @@ export const archetypes: Record<string, ArchetypeResult> = {
     verse: '"Sê forte e corajoso" - Josué 1:9',
   },
   servant: {
-    name: "O Servo",
+    name: "José",
     title: "Seu arquétipo espiritual é",
     description:
-      "Seu coração é voltado para servir os outros com humildade e amor. Assim como Jesus lavou os pés dos discípulos, você encontra propósito em colocar as necessidades dos outros acima das suas.",
+      "Seu coração é voltado para servir os outros com humildade e amor. Assim como José serviu fielmente em todas as circunstâncias, você encontra propósito em colocar as necessidades dos outros acima das suas.",
     traits: ["Humildade", "Compaixão", "Generosidade", "Dedicação"],
-    biblicalFigure: "Rute",
+    biblicalFigure: "José",
     verse: '"O maior entre vocês será aquele que serve" - Mateus 23:11',
   },
   wise: {
-    name: "O Sábio",
+    name: "Salomão",
     title: "Seu arquétipo espiritual é",
     description:
       "Você busca constantemente conhecimento e sabedoria divina. Como Salomão, você valoriza o entendimento profundo das Escrituras e aplica essa sabedoria em todas as áreas da vida.",
@@ -273,13 +273,52 @@ export const archetypes: Record<string, ArchetypeResult> = {
     verse: '"O princípio da sabedoria é o temor do Senhor" - Provérbios 9:10',
   },
   worshipper: {
-    name: "O Adorador",
+    name: "Davi",
     title: "Seu arquétipo espiritual é",
     description:
       "Sua conexão com Deus se expressa através da adoração profunda e contemplação. Como Davi, você tem um coração que transborda louvor e encontra paz na presença de Deus.",
     traits: ["Sensibilidade", "Expressividade", "Devoção", "Gratidão"],
     biblicalFigure: "Davi",
     verse: '"Bendirei o Senhor em todo o tempo" - Salmo 34:1',
+  },
+};
+
+export const archetypesFemale: Record<string, ArchetypeResult> = {
+  leader: {
+    name: "Débora",
+    title: "Seu arquétipo espiritual é",
+    description:
+      "Você tem o dom natural de liderar e inspirar outros na fé. Assim como Débora guiou Israel com coragem e sabedoria, você é chamada a ser uma luz que ilumina o caminho para aqueles ao seu redor.",
+    traits: ["Coragem", "Visão", "Determinação", "Inspiração"],
+    biblicalFigure: "Débora",
+    verse: '"Sê forte e corajosa" - Josué 1:9',
+  },
+  servant: {
+    name: "Rute",
+    title: "Seu arquétipo espiritual é",
+    description:
+      "Seu coração é voltado para servir os outros com humildade e amor. Assim como Rute demonstrou lealdade e dedicação inabaláveis, você encontra propósito em colocar as necessidades dos outros acima das suas.",
+    traits: ["Humildade", "Compaixão", "Generosidade", "Dedicação"],
+    biblicalFigure: "Rute",
+    verse: '"Aonde fores, irei eu" - Rute 1:16',
+  },
+  wise: {
+    name: "Ana",
+    title: "Seu arquétipo espiritual é",
+    description:
+      "Você busca constantemente conhecimento e sabedoria divina. Como Ana, você valoriza a oração profunda e a conexão íntima com Deus, aplicando essa sabedoria em todas as áreas da vida.",
+    traits: ["Discernimento", "Paciência", "Reflexão", "Conhecimento"],
+    biblicalFigure: "Ana",
+    verse: '"O princípio da sabedoria é o temor do Senhor" - Provérbios 9:10',
+  },
+  worshipper: {
+    name: "Maria",
+    title: "Seu arquétipo espiritual é",
+    description:
+      "Sua conexão com Deus se expressa através da adoração profunda e contemplação. Como Maria, você tem um coração que transborda louvor e encontra paz na presença de Deus.",
+    traits: ["Sensibilidade", "Expressividade", "Devoção", "Gratidão"],
+    biblicalFigure: "Maria",
+    verse: '"A minha alma engrandece ao Senhor" - Lucas 1:46',
   },
 };
 

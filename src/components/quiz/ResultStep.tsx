@@ -74,7 +74,7 @@ const ResultStep = ({ result, gender, age }: ResultStepProps) => {
                 className="w-28 h-28 rounded-2xl object-cover"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent rounded-b-2xl px-2 py-1.5">
-                <p className="text-white text-xs font-bold leading-tight">{result.name}</p>
+                <p className="text-white text-sm font-bold leading-tight">{result.name}</p>
                 <p className="text-white/70 text-[10px]">{result.biblicalFigure}</p>
               </div>
             </div>

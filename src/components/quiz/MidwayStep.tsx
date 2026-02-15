@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ChevronLeft } from "lucide-react";
 
 interface MidwayStepProps {
+  gender?: string;
   onContinue: () => void;
   onBack: () => void;
 }
