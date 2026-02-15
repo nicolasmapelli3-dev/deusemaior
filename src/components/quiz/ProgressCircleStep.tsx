@@ -27,7 +27,8 @@ const ProgressCircleStep = ({ onComplete }: ProgressCircleStepProps) => {
       }
     }, INTERVAL);
     return () => clearInterval(timer);
-  }, [onComplete]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const offset = CIRCUMFERENCE - (progress / 100) * CIRCUMFERENCE;
 
