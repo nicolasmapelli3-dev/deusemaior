@@ -16,10 +16,10 @@ const statBars = [
 ];
 
 const benefits = [
-  { icon: "✦", text: "Um percurso pensado de obedecer, voltado ao sentido e reconexão com Deus." },
-  { icon: "📖", text: "Descubra como viver o seu dom de saber cada dia, guiando o que sente com fé e discernimento." },
-  { icon: "💡", text: "Orações para longe da tela sem tempo para reflexões pessoais." },
-  { icon: "🌿", text: "Momentos e temas com oração diária." },
+  { icon: "✦", text: "Um percurso pensado para você, voltado ao sentido e reconexão com Deus." },
+  { icon: "📖", text: "Descubra como viver o seu dom espiritual cada dia, guiando o que sente com fé e discernimento." },
+  { icon: "💡", text: "Orações e reflexões pessoais para momentos longe da tela." },
+  { icon: "🌿", text: "Momentos de oração diária com temas inspiradores." },
 ];
 
 const weeklyPlan = [
@@ -36,7 +36,7 @@ const weeklyPlan = [
   {
     label: "Semana 3",
     color: "hsl(145,60%,45%)",
-    days: ["Full 1", "Dia 2", "", "", "", "Esperança", "Sabedoria"],
+    days: ["Confiança", "Propósito", "Perdão", "Coragem", "Compaixão", "Esperança", "Sabedoria"],
   },
 ];
 
@@ -117,7 +117,7 @@ const ResultStep = ({ result, gender, age }: ResultStepProps) => {
 
         {/* Archetype CTA text */}
         <p className="text-sm text-[hsl(30,10%,35%)] text-center mb-4 leading-relaxed px-2">
-          Arquétipos são o caminho para entender e elaborar um plano que o ajudará a crescer e a conhecer cada dia de sua vida.
+          Arquétipos são o caminho para entender e elaborar um plano que {gender === "female" ? "a" : "o"} ajudará a crescer e a conhecer cada dia de sua vida.
         </p>
 
         {/* CTA Button */}

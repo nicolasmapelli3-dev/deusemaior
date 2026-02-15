@@ -9,7 +9,7 @@ interface PlanLoadingStepProps {
 
 const loadingSteps = [
   { label: "Alinhando-se aos seus objetivos", shortLabel: "Metas" },
-  { label: "Identificar áreas de crescimento", shortLabel: "Áreas de crescimento" },
+  { label: "Identificando áreas de crescimento", shortLabel: "Áreas de crescimento" },
   { label: "Selecionando versículos bíblicos para você", shortLabel: "" },
 ];
 
