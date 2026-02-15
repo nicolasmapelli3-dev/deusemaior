@@ -20,9 +20,7 @@ const PlanReadyStep = ({ onContinue, onBack }: PlanReadyStepProps) => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 className="flex-1 text-center text-lg font-bold tracking-[0.15em] text-[hsl(30,10%,20%)] pr-8">
-          DUOMO
-        </h1>
+        <div className="flex-1" />
       </header>
 
       <main className="flex-1 flex flex-col items-center px-4 pt-6 pb-8 max-w-lg mx-auto w-full">

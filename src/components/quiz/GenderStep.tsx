@@ -15,9 +15,7 @@ const GenderStep = ({ onSelect }: GenderStepProps) => {
     >
       <header className="flex items-center justify-between px-4 py-3">
         <div className="w-10" />
-        <h1 className="text-xl font-bold tracking-[0.15em] text-[hsl(30,10%,20%)]">
-          DUOMO
-        </h1>
+        <div className="w-10" />
         <button className="w-10 h-10 flex items-center justify-center">
           <Menu className="w-6 h-6 text-[hsl(30,10%,30%)]" />
         </button>
@@ -36,7 +34,7 @@ const GenderStep = ({ onSelect }: GenderStepProps) => {
           </div>
           <div className="w-px h-8 bg-[hsl(30,10%,80%)]" />
           <p className="text-xs text-[hsl(30,10%,40%)] leading-tight max-w-[160px]">
-            400K fiéis já crescem com o app Duomo
+            400K fiéis já crescem com o app
           </p>
         </div>
 

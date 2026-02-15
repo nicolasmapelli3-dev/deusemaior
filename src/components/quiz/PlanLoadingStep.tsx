@@ -16,17 +16,17 @@ const loadingSteps = [
 const testimonials = [
   {
     title: "Exatamente o que meu coração precisava.",
-    text: "Finalmente encontrei o que procurava: uma maneira consistente, profunda e pessoal de crescer na fé. O Duomo me ajuda a curar feridas antigas, renovar meu foco e construir um relacionamento real com Cristo que realmente me sustenta ao longo do dia.",
+    text: "Finalmente encontrei o que procurava: uma maneira consistente, profunda e pessoal de crescer na fé. Me ajuda a curar feridas antigas, renovar meu foco e construir um relacionamento real com Cristo que realmente me sustenta ao longo do dia.",
     author: "Jane S.",
   },
   {
     title: "Eu me concentro todas as manhãs.",
-    text: "Duomo se tornou a âncora das minhas manhãs. É curto, prático e espiritualmente enriquecedor; eu o abro antes de qualquer outra coisa. Ele me ajuda a começar o dia me sentindo centrada, me lembrando do que importa e mais conectada com Deus.",
+    text: "Se tornou a âncora das minhas manhãs. É curto, prático e espiritualmente enriquecedor; eu o abro antes de qualquer outra coisa. Me ajuda a começar o dia me sentindo centrada, me lembrando do que importa e mais conectada com Deus.",
     author: "Lois H.",
   },
   {
     title: "Parece que foi feito sob medida para mim.",
-    text: "A cada dia, o Duomo parece falar diretamente com o que estou vivenciando. As lições são instigantes e, ao mesmo tempo, pessoais. Não se trata apenas de ler as Escrituras; trata-se de aprender a vivê-las nas áreas em que mais preciso de Deus.",
+    text: "A cada dia, parece falar diretamente com o que estou vivenciando. As lições são instigantes e, ao mesmo tempo, pessoais. Não se trata apenas de ler as Escrituras; trata-se de aprender a vivê-las nas áreas em que mais preciso de Deus.",
     author: "Wendy J.",
   },
 ];
@@ -88,9 +88,7 @@ const PlanLoadingStep = ({ onComplete, onBack }: PlanLoadingStepProps) => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 className="flex-1 text-center text-lg font-bold tracking-[0.15em] text-[hsl(30,10%,20%)] pr-8">
-          DUOMO
-        </h1>
+        <div className="flex-1" />
       </header>
 
       <main className="flex-1 flex flex-col items-center px-4 pt-8 pb-8 max-w-lg mx-auto w-full">

@@ -23,9 +23,7 @@ const Midway2Step = ({ onContinue, onBack }: Midway2StepProps) => {
         >
           <ChevronLeft className="w-6 h-6 text-[hsl(30,10%,30%)]" />
         </button>
-        <h1 className="text-xl font-bold tracking-[0.15em] text-[hsl(30,10%,20%)]">
-          DUOMO
-        </h1>
+        <div className="w-10" />
         <div className="w-10" />
       </header>
 
