@@ -118,7 +118,7 @@ const ResultStep = ({ result, gender, age }: ResultStepProps) => {
 
         {/* CTA Button */}
         <button className="w-full max-w-sm py-4 rounded-full bg-[hsl(270,60%,55%)] text-white font-bold text-base hover:bg-[hsl(270,60%,48%)] transition-colors active:scale-[0.98] mb-8">
-          Adquira meu plano
+          Adquira seu plano
         </button>
 
         {/* Testimonial */}
@@ -184,7 +184,7 @@ const ResultStep = ({ result, gender, age }: ResultStepProps) => {
         </div>
 
         <button className="w-full max-w-sm py-4 rounded-full bg-[hsl(270,60%,55%)] text-white font-bold text-base hover:bg-[hsl(270,60%,48%)] transition-colors active:scale-[0.98]">
-          Adquira meu plano
+          Adquira seu plano
         </button>
       </main>
     </motion.div>
