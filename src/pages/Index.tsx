@@ -14,7 +14,7 @@ import EmailStep from "@/components/quiz/EmailStep";
 import PlanLoadingStep from "@/components/quiz/PlanLoadingStep";
 import PlanReadyStep from "@/components/quiz/PlanReadyStep";
 import ResultStep from "@/components/quiz/ResultStep";
-import { quizQuestionsPart1, quizQuestionsPart2, quizQuestionsPart3, quizQuestionsPart4, allQuizQuestions, archetypes, type ArchetypeResult } from "@/data/quizData";
+import { quizQuestionsPart1, quizQuestionsPart2, quizQuestionsPart3, quizQuestionsPart4, allQuizQuestions, archetypesMale, archetypesFemale, type ArchetypeResult } from "@/data/quizData";
 
 type Step = "gender" | "age" | "ready" | "question-part1" | "midway" | "question-part2" | "midway2" | "question-part3" | "midway3" | "question-part4" | "progress-circle" | "profile-summary" | "yesno1" | "yesno2" | "email" | "plan-loading" | "plan-ready" | "result";
 
@@ -28,7 +28,7 @@ const Index = () => {
   const [answers, setAnswers] = useState<string[]>([]);
   const [result, setResult] = useState<ArchetypeResult | null>(null);
 
-  const calculateResult = useCallback((allAnswers: string[]): ArchetypeResult => {
+  const calculateResult = useCallback((allAnswers: string[], userGender: string): ArchetypeResult => {
     const scores = { leader: 0, servant: 0, wise: 0, worshipper: 0 };
     allAnswers.forEach((answer, i) => {
       const q = allQuizQuestions[i];
@@ -42,6 +42,7 @@ const Index = () => {
     const maxKey = (Object.keys(scores) as Array<keyof typeof scores>).reduce((a, b) =>
       scores[a] > scores[b] ? a : b
     );
+    const archetypes = userGender === "female" ? archetypesFemale : archetypesMale;
     return archetypes[maxKey];
   }, []);
 
@@ -106,9 +107,9 @@ const Index = () => {
   }, []);
 
   const handlePlanReady = useCallback(() => {
-    setResult(calculateResult(answers));
+    setResult(calculateResult(answers, gender));
     setStep("result");
-  }, [answers, calculateResult]);
+  }, [answers, gender, calculateResult]);
 
   const handleBack = () => {
     if (step === "age") {
