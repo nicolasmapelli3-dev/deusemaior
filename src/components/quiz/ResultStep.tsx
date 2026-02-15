@@ -117,9 +117,9 @@ const ResultStep = ({ result, gender, age }: ResultStepProps) => {
         </p>
 
         {/* CTA Button */}
-        <button className="w-full max-w-sm py-4 rounded-full bg-[hsl(270,60%,55%)] text-white font-bold text-base hover:bg-[hsl(270,60%,48%)] transition-colors active:scale-[0.98] mb-8">
-          Adquira seu plano
-        </button>
+        <a href="https://pay.cakto.com.br/3584itk_769865" target="_blank" rel="noopener noreferrer" className="w-full max-w-sm py-4 rounded-full bg-[hsl(270,60%,55%)] text-white font-bold text-base hover:bg-[hsl(270,60%,48%)] transition-colors active:scale-[0.98] mb-8 text-center block">
+          Adquirir plano
+        </a>
 
         {/* Testimonial */}
         <div className="w-full text-center mb-8 px-4">
@@ -183,9 +183,9 @@ const ResultStep = ({ result, gender, age }: ResultStepProps) => {
           </p>
         </div>
 
-        <button className="w-full max-w-sm py-4 rounded-full bg-[hsl(270,60%,55%)] text-white font-bold text-base hover:bg-[hsl(270,60%,48%)] transition-colors active:scale-[0.98]">
-          Adquira seu plano
-        </button>
+        <a href="https://pay.cakto.com.br/3584itk_769865" target="_blank" rel="noopener noreferrer" className="w-full max-w-sm py-4 rounded-full bg-[hsl(270,60%,55%)] text-white font-bold text-base hover:bg-[hsl(270,60%,48%)] transition-colors active:scale-[0.98] text-center block">
+          Adquirir plano
+        </a>
       </main>
     </motion.div>
   );
