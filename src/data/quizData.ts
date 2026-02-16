@@ -1,3 +1,4 @@
+// Quiz data - all corrections applied for both genders
 export type QuizQuestion = {
   id: number;
   question: string;
